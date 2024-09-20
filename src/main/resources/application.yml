@@ -1,0 +1,26 @@
+# Spring Profiles General Configurations
+server:
+  port: 8080
+  servlet:
+    context-path: /jpa-mappings-app
+
+management:
+  trace:
+    http:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus,env,info,metrics,threaddump,httpexchanges,mappings
+      base-path: /management
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: always
+
+spring:
+  application:
+    name: SpringBoot JPA Mappings App
+  profiles:
+    default: local-jpa # Default Spring Profile

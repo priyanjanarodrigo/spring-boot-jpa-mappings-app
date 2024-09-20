@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+  <!-- STUDENT table definition -->
+  <changeSet id="CL-0-CS-0" author="Priyanjana">
+    <createTable tableName="STUDENT">
+      <column name="ID" type="UUID">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="STUDENT_PK"/>
+      </column>
+      <column name="NAME" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="AGE" type="INT">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ADDRESS_ID" type="UUID">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <!-- ADDRESS table definition -->
+  <changeSet id="CL-0-CS-1" author="Priyanjana">
+    <createTable tableName="ADDRESS">
+      <column name="ID" type="UUID">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="ADDRESS_PK"/>
+      </column>
+      <column name="RESIDENCE_NO" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ADDRESS_LINE_1" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ADDRESS_LINE_2" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <!-- STUDENT table foreign key definition -->
+  <changeSet id="CL-0-CS-2" author="Priyanjana">
+    <addForeignKeyConstraint
+      constraintName="ADDRESS_ID_FK"
+      baseTableName="STUDENT"
+      baseColumnNames="ADDRESS_ID"
+      referencedTableName="ADDRESS"
+      referencedColumnNames="ID"
+      onDelete="CASCADE"
+      onUpdate="CASCADE"
+    />
+  </changeSet>
+
+  <!-- Making STUDENT table ADDRESS_ID foreign key an index -->
+  <changeSet id="CL-0-CS-3" author="Priyanjana">
+    <createIndex indexName="ADDRESS_ID_FK_INDEX" tableName="STUDENT">
+      <column name="ADDRESS_ID"/>
+    </createIndex>
+  </changeSet>
+</databaseChangeLog>
