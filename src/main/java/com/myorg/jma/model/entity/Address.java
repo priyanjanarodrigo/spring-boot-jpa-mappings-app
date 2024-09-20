@@ -40,11 +40,14 @@ public class Address implements Serializable {
   @Column(name = "RESIDENCE_NO", nullable = false)
   private String residenceNo;
 
-  @Column(name = "ADDRESS_LINE_1")
+  @Column(name = "ADDRESS_LINE_1", nullable = false)
   private String addressLine1;
 
-  @Column(name = "ADDRESS_LINE_2")
+  @Column(name = "ADDRESS_LINE_2", nullable = false)
   private String addressLine2;
+
+  @Column(name = "CITY", nullable = false)
+  private String city;
 
   @JsonIgnore
   @OneToOne(targetEntity = Student.class, mappedBy = "address", optional = false)

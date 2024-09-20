@@ -8,12 +8,14 @@ import lombok.Builder;
  * @param residenceNo  Residence No.
  * @param addressLine1 Address Line 1.
  * @param addressLine2 Address Line 2.
+ * @param city         City.
  */
 @Builder
 public record AddressResponse(
     String residenceNo,
     String addressLine1,
-    String addressLine2
+    String addressLine2,
+    String city
 ) {
 
 }

@@ -6,4 +6,26 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
   <!-- TODO: Table definitions are to be added here -->
+
+  <!-- ADDRESS table definition -->
+  <changeSet id="CL0-CS01" author="Priyanjana Rodrigo">
+    <createTable tableName="ADDRESS">
+      <column name="ID" type="UUID">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="ADDRESS_PK"/>
+      </column>
+      <column name="RESIDENCE_NO" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ADDRESS_LINE_1" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ADDRESS_LINE_2" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="CITY" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
 </databaseChangeLog>

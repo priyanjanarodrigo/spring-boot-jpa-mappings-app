@@ -28,6 +28,7 @@ public final class DtoToEntityMapper {
         .residenceNo(addressRequest.residenceNo())
         .addressLine1(addressRequest.addressLine1())
         .addressLine2(addressRequest.addressLine2())
+        .city(addressRequest.city())
         .build();
   }
 

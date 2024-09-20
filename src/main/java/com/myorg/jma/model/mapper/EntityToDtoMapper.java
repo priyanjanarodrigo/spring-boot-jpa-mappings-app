@@ -45,6 +45,7 @@ public final class EntityToDtoMapper {
         .residenceNo(address.getResidenceNo())
         .addressLine1(address.getAddressLine1())
         .addressLine2(address.getAddressLine2())
+        .city(address.getCity())
         .build();
   }
 
