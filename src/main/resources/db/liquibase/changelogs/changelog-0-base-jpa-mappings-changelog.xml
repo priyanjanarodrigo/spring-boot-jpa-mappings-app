@@ -170,6 +170,9 @@
   <changeSet id="CL0-CS9" author="Priyanjana Rodrigo">
     <comment>STUDENT_CLUB table definition</comment>
 
+    <!-- Based on the auto generated version of STUDENT_CLUB table with JPA, we just keep STUDENT_ID
+         and CLUB_ID columns just as foreign keys. No index definition is applied as well -->
+
     <!-- STUDENT_CLUB table definition -->
     <createTable tableName="STUDENT_CLUB">
       <column name="STUDENT_ID" type="UUID">
@@ -184,7 +187,7 @@
   <changeSet id="CL0-CS10" author="Priyanjana Rodrigo">
     <comment>STUDENT_CLUB table specific constraints</comment>
 
-    <!-- REGISTRATION table STUDENT_ID foreign key definition -->
+    <!-- STUDENT_CLUB table STUDENT_ID foreign key definition -->
     <addForeignKeyConstraint
       baseTableName="STUDENT_CLUB"
       baseColumnNames="STUDENT_ID"
@@ -192,7 +195,7 @@
       referencedTableName="STUDENT"
       referencedColumnNames="ID"/>
 
-    <!-- REGISTRATION table COURSE_ID foreign key definition -->
+    <!-- STUDENT_CLUB table COURSE_ID foreign key definition -->
     <addForeignKeyConstraint
       baseTableName="STUDENT_CLUB"
       baseColumnNames="CLUB_ID"
