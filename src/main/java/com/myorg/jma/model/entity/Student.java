@@ -50,7 +50,7 @@ public class Student implements Serializable {
   private String name;
 
   @Column(name = "AGE", nullable = false)
-  private int age;
+  private Integer age;
 
   /**
    * Whoever owns the foreign key column gets the @JoinColumn annotation. In this particular case,

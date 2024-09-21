@@ -5,10 +5,28 @@
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
-  <!-- TODO: Table definitions are to be added here -->
+  <changeSet id="CL0-CS0" author="Priyanjana Rodrigo">
+    <comment>STUDENT table definition</comment>
 
-  <!-- ADDRESS table definition -->
-  <changeSet id="CL0-CS01" author="Priyanjana Rodrigo">
+    <createTable tableName="STUDENT">
+      <column name="ID" type="UUID">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="STUDENT_PK"/>
+      </column>
+      <column name="NAME" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="AGE" type="INTEGER">
+        <constraints nullable="false"/>
+      </column>
+      <column name="ADDRESS_ID" type="UUID">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="CL0-CS1" author="Priyanjana Rodrigo">
+    <comment>ADDRESS table definition</comment>
+
     <createTable tableName="ADDRESS">
       <column name="ID" type="UUID">
         <constraints nullable="false" primaryKey="true" primaryKeyName="ADDRESS_PK"/>
@@ -26,6 +44,161 @@
         <constraints nullable="false"/>
       </column>
     </createTable>
+  </changeSet>
+
+  <changeSet id="CL0-CS2" author="Priyanjana Rodrigo">
+    <comment>STUDENT table specific constraints</comment>
+
+    <!-- STUDENT table ADDRESS_ID foreign key definition -->
+    <addForeignKeyConstraint
+      baseTableName="STUDENT"
+      baseColumnNames="ADDRESS_ID"
+      constraintName="FK_ADDRESS_ID"
+      referencedTableName="ADDRESS"
+      referencedColumnNames="ID"/>
+
+    <!-- STUDENT table ADDRESS_ID index definition -->
+    <createIndex tableName="STUDENT" indexName="INDEX_ADDRESS_ID" unique="true">
+      <column name="ADDRESS_ID"/>
+    </createIndex>
+  </changeSet>
+
+  <changeSet id="CL0-CS3" author="Priyanajan Rodrigo">
+    <comment>PERSONAL_INTEREST table definition</comment>
+
+    <createTable tableName="PERSONAL_INTEREST">
+      <column name="ID" type="UUID">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="PERSONAL_INTEREST_PK"/>
+      </column>
+      <column name="DESCRIPTION" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="STUDENT_ID" type="UUID">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="CL0-CS4" author="Priyanjana Rodrigo">
+    <comment>PERSONAL_INTEREST table specific constraints</comment>
+
+    <!-- PERSONAL_INTEREST table STUDENT_ID foreign key definition -->
+    <addForeignKeyConstraint
+      baseTableName="PERSONAL_INTEREST"
+      baseColumnNames="STUDENT_ID"
+      constraintName="FK_STUDENT_ID"
+      referencedTableName="STUDENT"
+      referencedColumnNames="ID"/>
+
+    <!-- PERSONAL_INTEREST table STUDENT_ID index definition -->
+    <createIndex tableName="PERSONAL_INTEREST" indexName="INDEX_STUDENT_ID">
+      <column name="STUDENT_ID"/>
+    </createIndex>
+  </changeSet>
+
+  <changeSet id="CL0-CS5" author="Priyanjana Rodrigo">
+    <comment>COURSE table definition</comment>
+
+    <!-- COURSE table definition -->
+    <createTable tableName="COURSE">
+      <column name="ID" type="UUID">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="COURSE_PK"/>
+      </column>
+      <column name="NAME" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+      <column name="FEE" type="DOUBLE PRECISION">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="CL0-CS6" author="Priyanjana Rodrigo">
+    <comment>REGISTRATION table definition</comment>
+
+    <!-- REGISTRATION table definition -->
+    <createTable tableName="REGISTRATION">
+      <column name="STUDENT_ID" type="UUID">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="REGISTRATION_COMPOSITE_PK"/>
+      </column>
+      <column name="COURSE_ID" type="UUID">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="REGISTRATION_COMPOSITE_PK"/>
+      </column>
+      <column name="REGISTRATION_DATE" type="TIMESTAMP">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="CL0-CS7" author="Priyanjana Rodrigo">
+    <comment>REGISTRATION table specific constraints</comment>
+
+    <!-- REGISTRATION table STUDENT_ID foreign key definition -->
+    <addForeignKeyConstraint
+      baseTableName="REGISTRATION"
+      baseColumnNames="STUDENT_ID"
+      constraintName="FK_STUDENT_ID"
+      referencedTableName="STUDENT"
+      referencedColumnNames="ID"/>
+
+    <!-- REGISTRATION table COURSE_ID foreign key definition -->
+    <addForeignKeyConstraint
+      baseTableName="REGISTRATION"
+      baseColumnNames="COURSE_ID"
+      constraintName="FK_COURSE_ID"
+      referencedTableName="COURSE"
+      referencedColumnNames="ID"/>
+
+    <!-- There's no need to create index for STUDENT_ID and COURSE_ID columns again as they
+         automatically become unique due to REGISTRATION_COMPOSITE_PK definition -->
+  </changeSet>
+
+  <changeSet id="CL0-CS8" author="Priyanjana Rodrigo">
+    <comment>CLUB table definition</comment>
+
+    <!-- CLUB table definition -->
+    <createTable tableName="CLUB">
+      <column name="ID" type="UUID">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="CLUB_PK"/>
+      </column>
+      <column name="NAME" type="VARCHAR(255)">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="CL0-CS9" author="Priyanjana Rodrigo">
+    <comment>STUDENT_CLUB table definition</comment>
+
+    <!-- STUDENT_CLUB table definition -->
+    <createTable tableName="STUDENT_CLUB">
+      <column name="STUDENT_ID" type="UUID">
+        <constraints nullable="false"/>
+      </column>
+      <column name="CLUB_ID" type="UUID">
+        <constraints nullable="false"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <changeSet id="CL0-CS10" author="Priyanjana Rodrigo">
+    <comment>STUDENT_CLUB table specific constraints</comment>
+
+    <!-- REGISTRATION table STUDENT_ID foreign key definition -->
+    <addForeignKeyConstraint
+      baseTableName="STUDENT_CLUB"
+      baseColumnNames="STUDENT_ID"
+      constraintName="FK_STUDENT_ID"
+      referencedTableName="STUDENT"
+      referencedColumnNames="ID"/>
+
+    <!-- REGISTRATION table COURSE_ID foreign key definition -->
+    <addForeignKeyConstraint
+      baseTableName="STUDENT_CLUB"
+      baseColumnNames="CLUB_ID"
+      constraintName="FK_CLUB_ID"
+      referencedTableName="CLUB"
+      referencedColumnNames="ID"/>
   </changeSet>
 
 </databaseChangeLog>
