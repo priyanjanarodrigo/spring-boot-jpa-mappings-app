@@ -5,7 +5,11 @@
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
-  <changeSet id="CL0-CS0" author="Priyanjana Rodrigo">
+  <!-- Property definitions -->
+  <property name="author" value="Priyanjana Rodrigo"/>
+  <property name="changeLogIdPrefix" value="CL0-CS"/>
+
+  <changeSet id="${changeLogIdPrefix}0" author="${author}">
     <comment>STUDENT table definition</comment>
 
     <createTable tableName="STUDENT">
@@ -24,7 +28,7 @@
     </createTable>
   </changeSet>
 
-  <changeSet id="CL0-CS1" author="Priyanjana Rodrigo">
+  <changeSet id="${changeLogIdPrefix}1" author="${author}">
     <comment>ADDRESS table definition</comment>
 
     <createTable tableName="ADDRESS">
@@ -46,7 +50,7 @@
     </createTable>
   </changeSet>
 
-  <changeSet id="CL0-CS2" author="Priyanjana Rodrigo">
+  <changeSet id="${changeLogIdPrefix}2" author="${author}">
     <comment>STUDENT table specific constraints</comment>
 
     <!-- STUDENT table ADDRESS_ID foreign key definition -->
@@ -63,7 +67,7 @@
     </createIndex>
   </changeSet>
 
-  <changeSet id="CL0-CS3" author="Priyanajan Rodrigo">
+  <changeSet id="${changeLogIdPrefix}3" author="${author}">
     <comment>PERSONAL_INTEREST table definition</comment>
 
     <createTable tableName="PERSONAL_INTEREST">
@@ -79,7 +83,7 @@
     </createTable>
   </changeSet>
 
-  <changeSet id="CL0-CS4" author="Priyanjana Rodrigo">
+  <changeSet id="${changeLogIdPrefix}4" author="${author}">
     <comment>PERSONAL_INTEREST table specific constraints</comment>
 
     <!-- PERSONAL_INTEREST table STUDENT_ID foreign key definition -->
@@ -96,7 +100,7 @@
     </createIndex>
   </changeSet>
 
-  <changeSet id="CL0-CS5" author="Priyanjana Rodrigo">
+  <changeSet id="${changeLogIdPrefix}5" author="${author}">
     <comment>COURSE table definition</comment>
 
     <!-- COURSE table definition -->
@@ -113,7 +117,7 @@
     </createTable>
   </changeSet>
 
-  <changeSet id="CL0-CS6" author="Priyanjana Rodrigo">
+  <changeSet id="${changeLogIdPrefix}6" author="${author}">
     <comment>REGISTRATION table definition</comment>
 
     <!-- REGISTRATION table definition -->
@@ -130,7 +134,7 @@
     </createTable>
   </changeSet>
 
-  <changeSet id="CL0-CS7" author="Priyanjana Rodrigo">
+  <changeSet id="${changeLogIdPrefix}7" author="${author}">
     <comment>REGISTRATION table specific constraints</comment>
 
     <!-- REGISTRATION table STUDENT_ID foreign key definition -->
@@ -153,7 +157,7 @@
          automatically become unique due to REGISTRATION_COMPOSITE_PK definition -->
   </changeSet>
 
-  <changeSet id="CL0-CS8" author="Priyanjana Rodrigo">
+  <changeSet id="${changeLogIdPrefix}8" author="${author}">
     <comment>CLUB table definition</comment>
 
     <!-- CLUB table definition -->
@@ -167,7 +171,7 @@
     </createTable>
   </changeSet>
 
-  <changeSet id="CL0-CS9" author="Priyanjana Rodrigo">
+  <changeSet id="${changeLogIdPrefix}9" author="${author}">
     <comment>STUDENT_CLUB table definition</comment>
 
     <!-- Based on the auto generated version of STUDENT_CLUB table with JPA, we just keep STUDENT_ID
@@ -184,7 +188,7 @@
     </createTable>
   </changeSet>
 
-  <changeSet id="CL0-CS10" author="Priyanjana Rodrigo">
+  <changeSet id="${changeLogIdPrefix}10" author="${author}">
     <comment>STUDENT_CLUB table specific constraints</comment>
 
     <!-- STUDENT_CLUB table STUDENT_ID foreign key definition -->
