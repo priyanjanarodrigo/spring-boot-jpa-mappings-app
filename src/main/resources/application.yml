@@ -22,5 +22,18 @@ management:
 spring:
   application:
     name: SpringBoot JPA Mappings App
+
   profiles:
     default: local-jpa # Default Spring Profile
+
+  datasource:
+    username: postgres
+    password: postgres@15
+    driverClassName: org.postgresql.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      maximum-pool-size: 30
+      minimum-idle: 10
