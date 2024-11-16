@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 /**
  * StudentRepository interface extends JpaRepository to provide CRUD operations for Student entity.
  */
-@Repository
+@Repository("studentRepository")
 public interface StudentRepository extends JpaRepository<Student, UUID> {
 
 }

@@ -1,7 +1,7 @@
 package com.myorg.jma.controller;
 
 import static com.myorg.jma.util.Constants.PATH_SEPARATOR;
-import static com.myorg.jma.util.Constants.STUDENTS_ENDPOINT;
+import static com.myorg.jma.util.Constants.URI_ENDPOINT_STUDENTS;
 import static java.net.URI.create;
 
 import com.myorg.jma.model.dto.request.StudentRequest;
@@ -28,13 +28,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(STUDENTS_ENDPOINT)
+@RequestMapping(URI_ENDPOINT_STUDENTS)
 public class StudentController {
 
   private final StudentService studentService;
 
   /**
-   * Creates a new student and returns the student response.
+   * Creates a new student and returns the ResponseEntity of type StudentResponse.
    *
    * @param studentRequest The StudentRequest object which contains the student details.
    * @return ResponseEntity<StudentResponse>.
@@ -45,12 +45,13 @@ public class StudentController {
       @RequestBody StudentRequest studentRequest) {
     log.info("createStudent endpoint invoked. Request body: {}", studentRequest);
     StudentResponse studentResponse = studentService.createStudent(studentRequest);
-    return ResponseEntity.created(create(STUDENTS_ENDPOINT + PATH_SEPARATOR + studentResponse.id()))
+    return ResponseEntity.created(create(URI_ENDPOINT_STUDENTS + PATH_SEPARATOR + studentResponse.id()))
         .body(studentResponse);
   }
 
   /**
-   * Returns the student information related to the given student id.
+   * Returns the student information related to the given student id within a ResponseEntity of type
+   * StudentResponse.
    *
    * @param id The Student id.
    * @return ResponseEntity<StudentResponse>.

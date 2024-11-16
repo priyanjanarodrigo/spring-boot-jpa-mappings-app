@@ -3,9 +3,11 @@ package com.myorg.jma.model.mapper;
 import static lombok.AccessLevel.PRIVATE;
 
 import com.myorg.jma.model.dto.request.AddressRequest;
+import com.myorg.jma.model.dto.request.CourseRequest;
 import com.myorg.jma.model.dto.request.PersonalInterestRequest;
 import com.myorg.jma.model.dto.request.StudentRequest;
 import com.myorg.jma.model.entity.Address;
+import com.myorg.jma.model.entity.Course;
 import com.myorg.jma.model.entity.PersonalInterest;
 import com.myorg.jma.model.entity.Student;
 import java.util.List;
@@ -81,5 +83,15 @@ public final class DtoToEntityMapper {
         .description(personalInterestRequest.description())
         .student(student)
         .build();
+  }
+
+  /**
+   * Maps CourseRequest to Course entity.
+   *
+   * @param courseRequest CourseRequest object.
+   * @return Course.
+   */
+  public static Course mapCourseRequestToCourse(CourseRequest courseRequest) {
+    return Course.builder().name(courseRequest.name()).fee(courseRequest.fee()).build();
   }
 }

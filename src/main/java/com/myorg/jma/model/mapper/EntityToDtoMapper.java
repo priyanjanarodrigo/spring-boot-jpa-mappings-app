@@ -3,9 +3,11 @@ package com.myorg.jma.model.mapper;
 import static lombok.AccessLevel.PRIVATE;
 
 import com.myorg.jma.model.dto.response.AddressResponse;
+import com.myorg.jma.model.dto.response.CourseResponse;
 import com.myorg.jma.model.dto.response.PersonalInterestResponse;
 import com.myorg.jma.model.dto.response.StudentResponse;
 import com.myorg.jma.model.entity.Address;
+import com.myorg.jma.model.entity.Course;
 import com.myorg.jma.model.entity.PersonalInterest;
 import com.myorg.jma.model.entity.Student;
 import java.util.List;
@@ -73,5 +75,19 @@ public final class EntityToDtoMapper {
       List<PersonalInterest> personalInterests) {
     return personalInterests.stream()
         .map(EntityToDtoMapper::mapPersonalInterestToPersonalInterestResponse).toList();
+  }
+
+  /**
+   * Maps Course entity to CourseResponse.
+   *
+   * @param course Course entity.
+   * @return CourseResponse.
+   */
+  public static CourseResponse mapCourseToCourseResponse(Course course) {
+    return CourseResponse.builder()
+        .id(course.getId())
+        .name(course.getName())
+        .fee(course.getFee())
+        .build();
   }
 }
