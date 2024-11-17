@@ -13,6 +13,7 @@ import com.myorg.jma.repository.CourseRepository;
 import com.myorg.jma.service.CourseServiceImpl;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -57,11 +58,11 @@ class CourseServiceTest {
   }
 
   @Test
+  @DisplayName("Unit Test - CourseService - Successfully course creation")
   void createCourse_ShouldReturnCourseResponse() {
     when(courseRepository.save(any(Course.class))).thenReturn(course);
     CourseResponse actualResponse = courseService.createCourse(courseRequest);
-
-    // Then
+    
     assertThat(actualResponse).isNotNull();
     assertThat(actualResponse.id()).isEqualTo(expectedResponse.id());
     assertThat(actualResponse.name()).isEqualTo(expectedResponse.name());

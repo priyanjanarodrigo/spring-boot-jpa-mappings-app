@@ -25,7 +25,9 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 /**
  * AbstractIntegrationTest class : Abstract base class for integration tests.
  */
-@Testcontainers
+@Testcontainers(
+    // disable testcontainers if docker env is not available
+    disabledWithoutDocker = true)
 @SpringBootTest(
     webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
     // Improves test startup time by lazy loading beans
