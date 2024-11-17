@@ -45,7 +45,8 @@ public class StudentController {
       @RequestBody StudentRequest studentRequest) {
     log.info("createStudent endpoint invoked. Request body: {}", studentRequest);
     StudentResponse studentResponse = studentService.createStudent(studentRequest);
-    return ResponseEntity.created(create(URI_ENDPOINT_STUDENTS + PATH_SEPARATOR + studentResponse.id()))
+    return ResponseEntity
+        .created(create(URI_ENDPOINT_STUDENTS + PATH_SEPARATOR + studentResponse.id()))
         .body(studentResponse);
   }
 

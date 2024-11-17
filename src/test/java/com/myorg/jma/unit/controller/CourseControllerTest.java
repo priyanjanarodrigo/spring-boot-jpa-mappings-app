@@ -1,9 +1,9 @@
 package com.myorg.jma.unit.controller;
 
-import static com.myorg.jma.util.Constants.URI_ENDPOINT_COURSES;
 import static com.myorg.jma.util.Constants.PATH_SEPARATOR;
 import static com.myorg.jma.util.Constants.PROFILE_LOCAL_JPA;
 import static com.myorg.jma.util.Constants.PROFILE_LOCAL_LIQUIBASE;
+import static com.myorg.jma.util.Constants.URI_ENDPOINT_COURSES;
 import static java.util.UUID.randomUUID;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.HttpHeaders.LOCATION;
@@ -71,8 +71,11 @@ class CourseControllerTest {
         .fee(courseRequest.fee()).build();
   }
 
+  /**
+   * Unit test for creating a new course with a valid request body.
+   */
   @Test
-  @DisplayName("Creating a new course with a valid request body")
+  @DisplayName("Unit Test - CourseController - Creating a new course with a valid request body")
   void testCreateCourse_withValidRequest() throws Exception {
     CourseRequest courseRequest = getCourseRequest();
     CourseResponse courseResponse = getCourseResponse(courseRequest);
@@ -88,8 +91,11 @@ class CourseControllerTest {
         .andExpect(jsonPath("$.fee").value(courseResponse.fee()));
   }
 
+  /**
+   * Unit test for creating a new course with an invalid request body.
+   */
   @Test
-  @DisplayName("Creating a new course with an invalid request body")
+  @DisplayName("Unit Test - CourseController - Creating a new course with an invalid request body")
   void testCreateCourse_withInvalidRequest() throws Exception {
     CourseRequest courseRequest = CourseRequest.builder().name(null).fee(null).build();
 

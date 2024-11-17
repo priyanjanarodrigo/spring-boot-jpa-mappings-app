@@ -1,7 +1,7 @@
 package com.myorg.jma.controller;
 
-import static com.myorg.jma.util.Constants.URI_ENDPOINT_COURSES;
 import static com.myorg.jma.util.Constants.PATH_SEPARATOR;
+import static com.myorg.jma.util.Constants.URI_ENDPOINT_COURSES;
 import static java.net.URI.create;
 
 import com.myorg.jma.model.dto.request.CourseRequest;
@@ -36,7 +36,8 @@ public class CourseController {
   public ResponseEntity<CourseResponse> createCourse(
       @Valid @RequestBody CourseRequest courseRequest) {
     CourseResponse courseResponse = courseService.createCourse(courseRequest);
-    return ResponseEntity.created(create(URI_ENDPOINT_COURSES + PATH_SEPARATOR + courseResponse.id()))
+    return ResponseEntity
+        .created(create(URI_ENDPOINT_COURSES + PATH_SEPARATOR + courseResponse.id()))
         .body(courseResponse);
   }
 }
